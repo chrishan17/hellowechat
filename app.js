@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.use(express.query()); // Or app.use(express.query());
-app.use('/wechat', wechat('/', function (req, res, next) {
+app.use('/wechat', wechat('hellonode', function (req, res, next) {
   // 微信输入信息都在req.weixin上
   var message = req.weixin;
   if (message.FromUserName === 'diaosi') {
@@ -99,7 +99,7 @@ app.use('/wechat', wechat('/', function (req, res, next) {
 }));
 
 
-var port = Number(process.env.PORT || 80);
+var port = Number(process.env.PORT || 3000);
 app.listen(port);
 
 module.exports = app;
