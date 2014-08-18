@@ -98,8 +98,6 @@ app.use('/wechat', wechat('SsQi3fP1jPU6JqddRfmYq48mSGwQnWT3atAM9XJwtI4YyuugZSXWO
   }
 }));
 
-
-var port = Number(process.env.PORT || 3000);
-app.listen(port);
+app.listen(80);
 
 module.exports = app;
