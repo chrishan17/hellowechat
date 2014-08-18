@@ -59,7 +59,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-app.listen(3000);
+var port = Number(process.env.PORT || 80);
+app.listen(port);
 
 module.exports = app;
