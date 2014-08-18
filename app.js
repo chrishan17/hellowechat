@@ -11,6 +11,7 @@ var hello = require('./routes/hello');
 var access = require('./routes/access_token.js');
 
 var app = express();
+var wechat = require('wechat');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -59,6 +60,45 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+app.use(express.query()); // Or app.use(express.query());
+app.use('/wechat', wechat('hellonode', function (req, res, next) {
+  // 微信输入信息都在req.weixin上
+  var message = req.weixin;
+  if (message.FromUserName === 'diaosi') {
+    // 回复屌丝(普通回复)
+    res.reply('hehe');
+  } else if (message.FromUserName === 'text') {
+    //你也可以这样回复text类型的信息
+    res.reply({
+      content: 'text object',
+      type: 'text'
+    });
+  } else if (message.FromUserName === 'hehe') {
+    // 回复一段音乐
+    res.reply({
+      type: "music",
+      content: {
+        title: "来段音乐吧",
+        description: "一无所有",
+        musicUrl: "http://mp3.com/xx.mp3",
+        hqMusicUrl: "http://mp3.com/xx.mp3"
+      }
+    });
+  } else {
+    // 回复高富帅(图文回复)
+    res.reply([
+      {
+        title: '你来我家接我吧',
+        description: '这是女神与高富帅之间的对话',
+        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
+        url: 'http://nodeapi.cloudfoundry.com/'
+      }
+    ]);
+  }
+}));
+
+
 var port = Number(process.env.PORT || 80);
 app.listen(port);
 
