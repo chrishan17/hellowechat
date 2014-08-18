@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.use(express.query()); // Or app.use(express.query());
-app.use('/wechat', wechat('hellonode', function (req, res, next) {
+app.use('/wechat', wechat('SsQi3fP1jPU6JqddRfmYq48mSGwQnWT3atAM9XJwtI4YyuugZSXWOWvrAwKZCkN2sY--eZGa_2PLQiZqT6q2hw', function (req, res, next) {
   // 微信输入信息都在req.weixin上
   var message = req.weixin;
   if (message.FromUserName === 'diaosi') {
