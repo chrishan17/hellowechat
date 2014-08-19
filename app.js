@@ -34,7 +34,7 @@ app.use(express.query()); // Or app.use(express.query());
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/wechat', weixin.weixin);
+app.use('/wechat', weixin);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
