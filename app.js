@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var weixin = require('./routes/weixin.js');
 
 var app = express();
-var wechat = require('wechat');
 
 // view engine setup
 app.set('port', process.env.PORT || 3000);
@@ -26,14 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.query()); // Or app.use(express.query());
 
-app.use('/wechat', wechat('hellonode', function (req, res, next) {
-  // 微信输入信息都在req.weixin上
-  var message = req.weixin;
-  res.reply('hehe');
-}));
+//app.use('/wechat', wechat('hellonode', function (req, res, next) {
+  //// 微信输入信息都在req.weixin上
+  //var message = req.weixin;
+  //res.reply('hehe');
+//}));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/wechat', weixin.weixin);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
