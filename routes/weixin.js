@@ -32,7 +32,9 @@ exports.weixin = wechat('hellonode', function(req, res, next) {
   } else {
     res.reply('hehe');
   }
-  api.createMenu(menu, function() {
-
+  api.createMenu(menu, function(err, result) {
+    if (err) {
+      res.reply('menu wrong');
+    }
   });
 });
