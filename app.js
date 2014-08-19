@@ -27,7 +27,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.query()); // Or app.use(express.query());
-app.use('/weixin', wechat('hellonode', function (req, res, next) {
+app.use('/wechat', wechat('hellonode', function (req, res, next) {
   // 微信输入信息都在req.weixin上
   var message = req.weixin;
   if (message.FromUserName === 'diaosi') {
