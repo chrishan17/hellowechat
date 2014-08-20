@@ -3,26 +3,36 @@ var API = require('wechat').API;
 var api = new API('wx555b5022e7ce7cd0', '81f42087bb0cf20de841d0e3e411f6fc');
 
 var menu = {
- "button":[
-   {
-     "type":"click",
-     "name":"今日歌曲",
-     "key":"V1001_TODAY_MUSIC"
-   },
-   {
-     "name":"菜单",
-     "sub_button":[
-       {
-         "type":"view",
-         "name":"搜索",
-         "url":"http://www.soso.com/"
-       },
-       {
-         "type":"click",
-         "name":"赞一下我们",
-         "key":"V1001_GOOD"
-       }]
-   }]
+  "button":[
+    {
+    "type":"click",
+    "name":"今日歌曲",
+    "key":"V1001_TODAY_MUSIC"
+  },
+  {
+    "type":"click",
+    "name":"歌手简介",
+    "key":"V1001_TODAY_SINGER"
+  },
+  {
+    "name":"菜单",
+    "sub_button":[
+      {
+      "type":"view",
+      "name":"搜索",
+      "url":"http://www.soso.com/"
+    },
+    {
+      "type":"view",
+      "name":"视频",
+      "url":"http://v.qq.com/"
+    },
+    {
+      "type":"click",
+      "name":"赞一下我们",
+      "key":"V1001_GOOD"
+    }]
+  }]
 };
 
 exports.weixin = wechat('hellonode', function(req, res, next) {
@@ -33,8 +43,8 @@ exports.weixin = wechat('hellonode', function(req, res, next) {
     res.reply('hehe');
   }
   api.createMenu(menu, function(err, result) {
-    if (err) {
-      res.reply('menu wrong');
+    if (!err) {
+      res.reply('menu successs');
     }
   });
 });
